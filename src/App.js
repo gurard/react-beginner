@@ -1,15 +1,28 @@
+import { useState } from 'react';
+
 import Welcome from './welcome';
 
 function App() {
+  const [show, setShow] = useState(true);
   const names = ['Jim', 'Jordan', 'Jared'];
+  // let show = true;
+
+  function toggle() {
+    // show = !show;
+    setShow(!show);
+    console.log(show);
+  }
+
   return (
     <>
-      <div></div>
-      <div>
-        {names.map((name) => (
-          <Welcome firstName={name} />
-        ))}
-      </div>
+      <button onClick={toggle}>Show / Hide</button>
+      {show ? (
+        <div>
+          {names.map((name, i) => (
+            <Welcome firstName={name} key={i} />
+          ))}
+        </div>
+      ) : null}
     </>
   );
 }
